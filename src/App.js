@@ -56,8 +56,8 @@ function App() {
       <Link to='/about'>About</Link> */}
 
       <Routes>
-      <Route exact path='/' element={<TextForm heading="Enter text here to Analyze" mode={mode} showAlert={showAlert}/>} />
-      <Route exact path='/about' element={<About/>} />
+      <Route exact path='/textutils' element={<TextForm heading="Enter text here to Analyze" mode={mode} showAlert={showAlert}/>} />
+      <Route exact path='/textutils/about' element={<About/>} />
       {/* <Route path='/about'><About/></Route> */ /*This is wrong*/}
       </Routes>
 
