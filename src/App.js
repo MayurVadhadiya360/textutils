@@ -46,12 +46,12 @@ function App() {
 
   return (
     <>
+    {/* <Router> */}
     {/* <Navbar/> */}
     <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
     <Alert alert={alert}/>
 
     <div className='container'>
-    {/* <Router> */}
       {/* <Link to='/'>Home</Link>
       <Link to='/about'>About</Link> */}
 
@@ -72,8 +72,8 @@ function App() {
         </Route>
 
       </Switch> */}
-    {/* </Router> */}
     </div>
+    {/* </Router> */}
     </>
   );
 }
