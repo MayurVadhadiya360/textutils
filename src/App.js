@@ -1,24 +1,80 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import About from './components/About';
+import Navbar from './components/Navbar';
+import TextForm from './components/TextForm';
+import Alert from './components/Alert';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes,
+  Link,
+} from "react-router-dom";
 
 function App() {
+  const [mode, setMode] = useState("light");
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 2500);
+  }
+
+  const toggleMode = () => {
+    if(mode === "light"){
+      setMode("dark");
+      document.body.style.backgroundColor = "black";
+      showAlert("Dark Mode has been enabled!", "success");
+      document.title = "Text Utils - DarkMode";
+    }else{
+      setMode('light');
+      document.body.style.backgroundColor = "white";
+      showAlert("Light Mode has been enabled!", "success");
+      document.title = "Text Utils - LightMode"
+    }
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    {/* <Navbar/> */}
+    <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
+    <Alert alert={alert}/>
+
+    <div className='container'>
+    {/* <Router> */}
+      {/* <Link to='/'>Home</Link>
+      <Link to='/about'>About</Link> */}
+
+      <Routes>
+      <Route exact path='/' element={<TextForm heading="Enter text here to Analyze" mode={mode} showAlert={showAlert}/>} />
+      <Route exact path='/about' element={<About/>} />
+      {/* <Route path='/about'><About/></Route> */ /*This is wrong*/}
+      </Routes>
+
+      {/* <Switch>
+
+        <Route path='/'>
+          <TextForm heading="Enter text here to Analyze" mode={mode} showAlert={showAlert}/>
+        </Route>
+
+        <Route path='/about'>
+          <About/>
+        </Route>
+
+      </Switch> */}
+    {/* </Router> */}
     </div>
+    </>
   );
 }
 
