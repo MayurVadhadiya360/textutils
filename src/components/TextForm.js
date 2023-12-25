@@ -2,12 +2,10 @@ import React, {useState} from 'react'
 
 export default function TextForm(props) {
     const handleOnChange = (event) => {
-        // console.log("On Change");
         setText(event.target.value);
     }
     
     const handleUpClick = () => {
-        // console.log("Up Btn Clicked!");
         let newText = text.toUpperCase();
         setText(newText);
         props.showAlert("Converted to uppercase!", "success");
@@ -25,10 +23,7 @@ export default function TextForm(props) {
     }
 
     const handleCopy = () => {
-        let t = document.getElementById("myTextArea");
-        t.select();
-        t.setSelectionRange(0, 999);
-        navigator.clipboard.writeText(t.value);
+        navigator.clipboard.writeText(text);
         props.showAlert("Copied to clipboard!", "success");
     }
 
@@ -39,16 +34,11 @@ export default function TextForm(props) {
     }
 
     const getWords = (words) => {
-        let cnt = words.split(" ").filter((element)=>{return element.length!==0;}).length;
-        // if(words.endsWith(" ") || words===""){
-        //     cnt--;
-        // }
+        let cnt = words.split(/\s+/).filter((element)=>{return element.length!==0;}).length;
         return cnt;
     }
 
-    const [text, setText] = useState("")
-    // text = "dfdsgsg" // Wrong way to change
-    // setText("dfdsgsg") // Right way 
+    const [text, setText] = useState("");
     return (
         <>
         <div className='container' style={{color: props.mode==='light' ? 'black':'white'}}>

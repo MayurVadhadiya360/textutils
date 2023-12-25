@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 export default function Navbar(props) {
+  const changeActive = (tag) => {
+    let home = document.getElementById('home');
+    let about = document.getElementById('about');
+    home.classList.remove('active');
+    about.classList.remove('active');
+    if(tag==='home'){
+      home.classList.add('active');
+    }else if(tag==='about'){
+      about.classList.add('active');
+    }
+  }
   return (
   <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
@@ -14,10 +25,10 @@ export default function Navbar(props) {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/textutils">Home</Link>
+              <Link className="nav-link active" id='home' onClick={()=>{changeActive("home")}} aria-current="page" to="/textutils">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/textutils/about">{props.aboutText}</Link>
+              <Link className="nav-link" id='about' onClick={()=>{changeActive("about")}} to="/textutils/about">{props.aboutText}</Link>
             </li>
             
           </ul>

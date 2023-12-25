@@ -6,13 +6,13 @@ import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 
 import {
-  createBrowserRouter,
-  RouterProvider,
+  // createBrowserRouter,
+  // RouterProvider,
   BrowserRouter as Router,
-  Switch,
+  // Switch,
   Route,
   Routes,
-  Link,
+  // Link,
 } from "react-router-dom";
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-    {/* <Router> */}
+    <Router>
     {/* <Navbar/> */}
     <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
     <Alert alert={alert}/>
@@ -73,7 +73,7 @@ function App() {
 
       </Switch> */}
     </div>
-    {/* </Router> */}
+    </Router>
     </>
   );
 }
